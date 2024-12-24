@@ -1,31 +1,30 @@
-import React, { useState } from 'react';
-import { StarRating } from './StarRating';
-import type { ReviewFormData } from '../types';
+import { useState } from 'react'
+import { StarRating } from './StarRating'
+import type { ReviewFormData } from '../types'
 
 interface ReviewFormProps {
-  onSubmit: (data: ReviewFormData) => void;
-  isSubmitting?: boolean;
+  onSubmit: (data: ReviewFormData) => void
+  isSubmitting?: boolean
 }
 
 export const ReviewForm: React.FC<ReviewFormProps> = ({
   onSubmit,
-  isSubmitting = false,
+  isSubmitting = false
 }) => {
-  const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState('');
+  const [rating, setRating] = useState(0)
+  const [comment, setComment] = useState('')
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (rating === 0) return;
-    onSubmit({ rating, comment });
-    // Reset form after submission
-    setRating(0);
-    setComment('');
-  };
+    e.preventDefault()
+    if (rating === 0) return
+    onSubmit({ rating, comment })
+    setRating(0)
+    setComment('')
+  }
 
   const handleRatingChange = (newRating: number) => {
-    setRating(newRating);
-  };
+    setRating(newRating)
+  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -61,5 +60,5 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({
         {isSubmitting ? 'Submitting...' : 'Submit Review'}
       </button>
     </form>
-  );
-};
+  )
+}

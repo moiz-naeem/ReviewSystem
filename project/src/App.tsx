@@ -1,60 +1,60 @@
-import React, { useState, useEffect } from 'react';
-import { ReviewForm } from './components/ReviewForm';
-import { ReviewList } from './components/ReviewList';
-import { ReviewStats } from './components/ReviewStats';
-import { ProductHeader } from './components/ProductHeader';
-import { api } from './services/api';
-import type { Review, ReviewFormData } from './types';
+import { useState, useEffect } from 'react'
+import { ReviewForm } from './components/ReviewForm'
+import { ReviewList } from './components/ReviewList'
+import { ReviewStats } from './components/ReviewStats'
+import { ProductHeader } from './components/ProductHeader'
+import { api } from './services/api'
+import type { Review, ReviewFormData } from './types'
 
 function App() {
-  const [reviews, setReviews] = useState<Review[]>([]);
-  const [averageRating, setAverageRating] = useState<number>(0);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [reviews, setReviews] = useState<Review[]>([])
+  const [averageRating, setAverageRating] = useState<number>(0)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    loadReviews();
-  }, []);
+    loadReviews()
+  }, [])
 
   const loadReviews = async () => {
     try {
       setError(null);
-      const data = await api.getReviews();
-      setReviews(data.reviews);
-      setAverageRating(Number(data.averageRating));
+      const data = await api.getReviews()
+      setReviews(data.reviews)
+      setAverageRating(Number(data.averageRating))
     } catch (error) {
-      setError(error instanceof Error ? error.message : 'An unexpected error occurred');
-      console.error('Failed to load reviews:', error);
+      setError(error instanceof Error ? error.message : 'An unexpected error occurred')
+      console.error('Failed to load reviews: ', error)
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
 
   const handleSubmitReview = async (data: ReviewFormData) => {
-    setIsSubmitting(true);
-    setError(null);
+    setIsSubmitting(true)
+    setError(null)
     try {
       await api.createReview({
         userId: 'user-1',
         bookingId: 'booking-1',
         ...data,
       });
-      await loadReviews();
+      await loadReviews()
     } catch (error) {
-      setError(error instanceof Error ? error.message : 'An unexpected error occurred');
-      console.error('Failed to submit review:', error);
+      setError(error instanceof Error ? error.message : 'An unexpected error occurred')
+      console.error('Failed to submit review:', error)
     } finally {
-      setIsSubmitting(false);
+      setIsSubmitting(false)
     }
-  };
+  }
 
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <p className="text-gray-500">Loading reviews...</p>
       </div>
-    );
+    )
   }
 
   return (
@@ -84,7 +84,7 @@ function App() {
         <ReviewList reviews={reviews} />
       </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

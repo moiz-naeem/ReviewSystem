@@ -1,12 +1,12 @@
-import React from 'react';
-import { Star } from 'lucide-react';
+import React from 'react'
+import { Star } from 'lucide-react'
 
 interface ReviewStatsProps {
-  averageRating: number;
-  totalReviews: number;
+  averageRating: number
+  totalReviews: number
 }
 
-export const ReviewStats: React.FC<ReviewStatsProps> = ({ averageRating, totalReviews }) => {
+export const ReviewStats: React.FC<ReviewStatsProps> = ({ averageRating = 0, totalReviews = 0 }) => {
   return (
     <div className="bg-white p-6 rounded-lg shadow-sm border mb-6">
       <h2 className="text-lg font-semibold mb-4">Customer Reviews</h2>
@@ -20,5 +20,5 @@ export const ReviewStats: React.FC<ReviewStatsProps> = ({ averageRating, totalRe
         </div>
       </div>
     </div>
-  );
+  )
 }

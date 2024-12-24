@@ -1,12 +1,12 @@
-import React from 'react';
-import { Star } from 'lucide-react';
+import { Star } from 'lucide-react'
 
 interface ProductHeaderProps {
-  averageRating: number;
-  totalReviews: number;
+  averageRating: number
+  totalReviews: number
 }
 
-export const ProductHeader: React.FC<ProductHeaderProps> = ({ averageRating, totalReviews }) => {
+export const ProductHeader: React.FC<ProductHeaderProps> = ({ averageRating = 0, totalReviews = 0}) => {
+
   return (
     <div className="bg-white shadow-sm border-b">
       <div className="max-w-2xl mx-auto px-4 py-8">

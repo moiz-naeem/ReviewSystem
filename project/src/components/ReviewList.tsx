@@ -1,9 +1,8 @@
-import React from 'react';
-import { ReviewCard } from './ReviewCard';
-import type { Review } from '../types';
+import { ReviewCard } from './ReviewCard'
+import type { Review } from '../types'
 
 interface ReviewListProps {
-  reviews: Review[];
+  reviews: Review[]
 }
 
 export const ReviewList: React.FC<ReviewListProps> = ({ reviews }) => {
@@ -12,7 +11,7 @@ export const ReviewList: React.FC<ReviewListProps> = ({ reviews }) => {
       <div className="bg-white p-8 rounded-lg shadow-sm border text-center">
         <p className="text-gray-500">No reviews yet. Be the first to leave one!</p>
       </div>
-    );
+    )
   }
 
   return (
@@ -21,5 +20,5 @@ export const ReviewList: React.FC<ReviewListProps> = ({ reviews }) => {
         <ReviewCard key={review.id} review={review} />
       ))}
     </div>
-  );
+  )
 }

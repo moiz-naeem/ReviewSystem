@@ -35,11 +35,7 @@ function App() {
     setIsSubmitting(true)
     setError(null)
     try {
-      await api.createReview({
-        userId: 'user-1',
-        bookingId: 'booking-1',
-        ...data,
-      });
+      await api.createReview(data);
       await loadReviews()
     } catch (error) {
       setError(error instanceof Error ? error.message : 'An unexpected error occurred')

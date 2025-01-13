@@ -13,7 +13,7 @@ export const ReviewList: React.FC<ReviewListProps> = ({ reviews }) => {
       </div>
     )
   }
-
+  console.log(reviews);
   return (
     <div className="space-y-4">
       {reviews.map((review) => (

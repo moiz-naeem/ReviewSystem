@@ -1,10 +1,8 @@
 export interface Review {
-  id: string;
-  userId: string;
-  bookingId: string;
+  id?: string;
   rating: number;
   comment: string;
-  createdAt: Date;
+  createdAt?: Date;
 }
 
 export interface ReviewFormData {

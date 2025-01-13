@@ -1,9 +1,11 @@
 import express, { Request, Response } from 'express'
 import { reviewService } from '../services/reviewService'
 
+//Pseudo backend without database integration
+
 const router = express.Router()
 
-router.post('/', (req: Request, res: Response): void => {
+router.post('/review/new', (req: Request, res: Response): void => {
   try {
     const review = reviewService.createReview(req.body)
     res.status(201).json(review)
@@ -12,7 +14,7 @@ router.post('/', (req: Request, res: Response): void => {
   }
 })
 
-router.get('/', (_req: Request, res: Response): void => {
+router.get('/reviews', (_req: Request, res: Response): void => {
   try {
     const reviews = reviewService.getReviews()
     const averageRating = reviewService.getAverageRating()

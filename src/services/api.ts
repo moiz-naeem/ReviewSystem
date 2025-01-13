@@ -1,4 +1,6 @@
+import { Review } from '../types'
 import { reviewService } from './reviewService'
+
 
 export const api = {
   async getReviews() {
@@ -9,7 +11,7 @@ export const api = {
     }
   },
 
-  async createReview(reviewData: { userId: string; bookingId: string; rating: number; comment: string }) {
+  async createReview(reviewData: Review) {
     try {
       return reviewService.createReview(reviewData)
     } catch (error) {
